@@ -1,0 +1,46 @@
+1. Copy the program to your PATH, name it 'git-credential-gpg', the 
+   name is significant, if you say 'gpg' when you config the helper,
+   git will actually execute a program named 'git-credential-gpg' later.
+   Suppose ~/bin is in you PATH, we do this:
+
+   $ cp git-credential-gpg ~/bin/git-credential-gpg
+
+
+2. Enable credential helper and choose gpg 
+
+    $ git config --global credential.helper gpg 
+
+
+3. Config the program, tell it your gpg key's id
+
+    $ git credential-gpg config
+    gpg key for encryption: B3ECAC6A    <-- enter your key id
+
+
+4. Next time you enter you username and password, git credential system
+   will save them in encrypted form for you, the location of these data
+   file is ~/.git-credential-gpg/
+
+   You can also store/get/erase your credentials manually, try this:
+
+    Storing credential
+        $ git credential-gpg store
+        protocol=https                  <-- ender protocol, host,
+        host=github.com                     username and password to
+        username=joshua                     the stdin.
+        password=abc
+        [press enter]                   <-- enter an EMPTY line when finished
+
+    Fetch credential
+        $ git credential-gpg get 
+        protocol=https                  <-- ender protocol, host
+        host=github.com                     to the stdin
+                                        <-- an EMPTY line
+        username=joshua                 <-- helper shows you the 
+        password=abc                        username and password
+
+    Delete credential
+        $ git credential-gpg erase
+        protocol=https                  <-- ender protocol, host
+        host=github.com                     to the stdin
+                                        <-- an EMPTY line
