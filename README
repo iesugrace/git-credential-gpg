@@ -1,0 +1,5 @@
+A bash shell script for git credential management, using gpg to secure credentials.
+
+See LICENSE for license agreement.
+
+See INSTALL for installation instructions.
